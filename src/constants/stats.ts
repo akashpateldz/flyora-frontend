@@ -1,0 +1,42 @@
+export const STATS = [
+  {
+    id: 'stat-users',
+    value: '50K+',
+    label: 'Happy Users',
+    description: 'Verified worldwide',
+    icon: 'users',
+    color: 'teal',
+  },
+  {
+    id: 'stat-countries',
+    value: '120+',
+    label: 'Countries',
+    description: 'Global coverage',
+    icon: 'globe',
+    color: 'blue',
+  },
+  {
+    id: 'stat-shipments',
+    value: '250K+',
+    label: 'Shipments',
+    description: 'Delivered safely',
+    icon: 'package',
+    color: 'teal',
+  },
+  {
+    id: 'stat-success',
+    value: '99.8%',
+    label: 'Success Rate',
+    description: 'On-time delivery',
+    icon: 'shield',
+    color: 'blue',
+  },
+  {
+    id: 'stat-rating',
+    value: '4.9/5',
+    label: 'Average Rating',
+    description: 'Community rated',
+    icon: 'star',
+    color: 'teal',
+  },
+];
