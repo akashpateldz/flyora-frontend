@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
       {/* ══════════════════════════════════════════════════════════════════
           LAYER 5 — Content
       ══════════════════════════════════════════════════════════════════ */}
-      <div className="relative z-30 container-flyora pt-20 pb-0 lg:pt-36 lg:pb-16 flex flex-col justify-center min-h-[100dvh]">
+      <div className="relative z-30 container-flyora pt-28 pb-0 lg:pt-36 lg:pb-16 flex flex-col lg:justify-center min-h-[100dvh]">
         <div className="grid lg:grid-cols-2 gap-8 xl:gap-14 items-center">
 
           {/* ── LEFT: Text + Badges + CTAs + Stats ─────────────────────── */}
@@ -188,7 +188,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* ── MOBILE ONLY: Image block directly in flow ────────────────────────── */}
-        <div className="lg:hidden w-full flex justify-center items-end overflow-visible mt-4 sm:mt-8 -mb-16 relative left-1/2 -translate-x-1/2">
+        <div className="lg:hidden w-full flex justify-center items-end overflow-visible mt-auto pt-8 relative left-1/2 -translate-x-1/2">
           <div className="w-[135%] sm:w-[110%] flex justify-center">
             <img
               src={heroWomanCutout}
