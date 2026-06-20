@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
       {/* ══════════════════════════════════════════════════════════════════
           LAYER 5 — Content
       ══════════════════════════════════════════════════════════════════ */}
-      <div className="relative z-30 container-flyora pt-20 pb-0 lg:pt-36 lg:pb-16 flex flex-col justify-center" style={{ minHeight: '100vh' }}>
+      <div className="relative z-30 container-flyora pt-20 pb-0 lg:pt-36 lg:pb-16 flex flex-col justify-center min-h-[100dvh]">
         <div className="grid lg:grid-cols-2 gap-8 xl:gap-14 items-center">
 
           {/* ── LEFT: Text + Badges + CTAs + Stats ─────────────────────── */}
@@ -200,7 +200,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* ── FAB BUTTON & POPUP ────────────────────────────────────────── */}
-      <div className="absolute bottom-8 right-4 lg:bottom-12 lg:right-12 z-[50] flex flex-col items-end">
+      <div className="absolute bottom-8 right-4 lg:bottom-12 lg:right-12 z-40 flex flex-col items-end">
         {/* The Search Form Popup */}
         {isSearchOpen && (
           <div
