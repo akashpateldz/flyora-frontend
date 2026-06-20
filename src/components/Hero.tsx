@@ -102,22 +102,21 @@ const Hero: React.FC = () => {
           LAYER 5 — Content
       ══════════════════════════════════════════════════════════════════ */}
       <div className="relative z-30 container-flyora pt-28 pb-0 lg:pt-36 lg:pb-16 flex flex-col lg:justify-center min-h-[100dvh]">
-        <div className="grid lg:grid-cols-2 gap-8 xl:gap-14 items-center">
-
+        {/* ── DESKTOP VIEW (UNTOUCHED) ────────────────────────── */}
+        <div className="hidden lg:grid lg:grid-cols-2 gap-8 xl:gap-14 items-center">
           {/* ── LEFT: Text + Badges + CTAs + Stats ─────────────────────── */}
-          <div className="max-w-lg w-full z-30 mt-4 lg:mt-0 pb-8 lg:pb-0">
-
+          <div className="max-w-lg w-full z-30 pb-8 lg:pb-0">
             {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-flyora-teal/25 rounded-full pl-3 pr-4 py-1.5 lg:py-2 mb-3 lg:mb-6 shadow-sm">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-flyora-teal/25 rounded-full pl-3 pr-4 py-2 mb-6 shadow-sm">
               <Plane size={13} className="text-flyora-teal -rotate-45" />
-              <span className="text-[10px] lg:text-xs font-semibold text-flyora-teal-dark tracking-wide uppercase lg:normal-case">
+              <span className="text-xs font-semibold text-flyora-teal-dark tracking-wide normal-case">
                 The smarter way to ship globally
               </span>
             </div>
 
             {/* H1 */}
             <h1
-              className="font-black text-flyora-navy leading-[1.1] lg:leading-[1.07] tracking-tight mb-3 lg:mb-5 text-[2.1rem] sm:text-5xl lg:text-[clamp(3rem,4.5vw,4.5rem)]"
+              className="font-black text-flyora-navy leading-[1.07] tracking-tight mb-5 text-[clamp(3rem,4.5vw,4.5rem)]"
               id="hero-headline"
             >
               Your Journey
@@ -137,25 +136,23 @@ const Hero: React.FC = () => {
             </h1>
 
             {/* Description */}
-            <p className="text-sm sm:text-base text-flyora-gray-600 leading-relaxed mb-5 lg:mb-7 max-w-sm">
+            <p className="text-base text-flyora-gray-600 leading-relaxed mb-7 max-w-sm">
               Connect with verified travelers who have extra luggage space and ship your
               packages safely, affordably and reliably.
             </p>
 
-
-
             {/* ── CTA Buttons ──────────────────────────────────────────── */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8 lg:mb-10 w-full sm:w-auto">
+            <div className="flex flex-row flex-wrap gap-3 mb-10 w-auto">
               <button
                 id="hero-find-traveler-btn"
-                className="inline-flex items-center justify-center sm:justify-start gap-2.5 px-6 py-3.5 bg-flyora-navy text-white font-bold text-sm rounded-xl shadow-[0_6px_20px_rgba(10,22,40,0.30)] hover:bg-flyora-navy-light hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(10,22,40,0.38)] transition-all duration-300 w-full sm:w-auto"
+                className="inline-flex items-center justify-start gap-2.5 px-6 py-3.5 bg-flyora-navy text-white font-bold text-sm rounded-xl shadow-[0_6px_20px_rgba(10,22,40,0.30)] hover:bg-flyora-navy-light hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(10,22,40,0.38)] transition-all duration-300 w-auto"
               >
                 Find a Traveler
                 <ArrowRight size={16} />
               </button>
               <button
                 id="hero-post-trip-btn"
-                className="inline-flex items-center justify-center sm:justify-start gap-2.5 px-6 py-3.5 bg-white/85 backdrop-blur-sm text-flyora-navy font-bold text-sm rounded-xl border-2 border-flyora-gray-200 shadow-sm hover:border-flyora-teal/50 hover:text-flyora-teal hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
+                className="inline-flex items-center justify-start gap-2.5 px-6 py-3.5 bg-white/85 backdrop-blur-sm text-flyora-navy font-bold text-sm rounded-xl border-2 border-flyora-gray-200 shadow-sm hover:border-flyora-teal/50 hover:text-flyora-teal hover:-translate-y-0.5 transition-all duration-300 w-auto"
               >
                 <Plane size={16} className="-rotate-45" />
                 Post Your Trip
@@ -164,18 +161,18 @@ const Hero: React.FC = () => {
             </div>
 
             {/* ── Stats Row ────────────────────────────────────────────── */}
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-4 lg:gap-6">
+            <div className="flex flex-wrap items-center gap-6">
               {[
                 { icon: <Users size={16} />, value: '50K+', label: 'Happy Users' },
                 { icon: <Globe size={16} />, value: '120+', label: 'Countries' },
                 { icon: <Package size={16} />, value: '250K+', label: 'Shipments' },
                 { icon: <CheckCircle size={16} />, value: '99.8%', label: 'Success Rate' },
               ].map((s) => (
-                <div key={s.label} className="flex items-center gap-1.5 lg:gap-2">
+                <div key={s.label} className="flex items-center gap-2">
                   <span className="text-flyora-teal">{s.icon}</span>
                   <div>
-                    <p className="text-sm lg:text-base font-black text-flyora-navy leading-none">{s.value}</p>
-                    <p className="text-[9px] lg:text-[10px] text-flyora-gray-500 leading-none mt-0.5 whitespace-nowrap">{s.label}</p>
+                    <p className="text-base font-black text-flyora-navy leading-none">{s.value}</p>
+                    <p className="text-[10px] text-flyora-gray-500 leading-none mt-0.5 whitespace-nowrap">{s.label}</p>
                   </div>
                 </div>
               ))}
@@ -183,18 +180,69 @@ const Hero: React.FC = () => {
           </div>
 
           {/* ── RIGHT: Desktop Spacer ────────────────────────── */}
-          <div className="hidden lg:block pointer-events-none" />
-
+          <div className="pointer-events-none" />
         </div>
 
-        {/* ── MOBILE ONLY: Image block directly in flow ────────────────────────── */}
-        <div className="lg:hidden w-full flex justify-center items-end overflow-visible mt-auto pt-8 relative left-1/2 -translate-x-1/2">
-          <div className="w-[135%] sm:w-[110%] flex justify-center">
+        {/* ── ADVANCED MOBILE VIEW (ONLY MOBILE) ────────────────────────── */}
+        <div className="flex lg:hidden flex-col items-center text-center w-full flex-1 z-30 px-1 pt-2">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-1.5 bg-[#F0FDFA] border border-[#CCFBF1] rounded-full px-3 py-1.5 mb-5 shadow-sm">
+            <Plane size={12} className="text-[#0D9488] -rotate-45" />
+            <span className="text-[10px] font-bold text-[#0F766E] uppercase tracking-wide">
+              Smart Global Shipping
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="font-black text-[#0A1628] leading-[1.12] tracking-tight mb-3 text-[2.5rem] sm:text-5xl">
+            Your Journey<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#14B8A6]">
+              Carries More
+            </span><br />
+            Than You.
+          </h1>
+
+          {/* Description */}
+          <p className="text-[13px] text-[#4B5563] leading-relaxed mb-7 max-w-[290px] font-medium">
+            Share luggage space with verified travelers. Ship packages safely and affordably.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col w-full max-w-[280px] gap-3 mb-8">
+            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#0A1628] text-white font-bold text-[13px] rounded-2xl shadow-[0_8px_20px_rgba(10,22,40,0.2)] active:scale-[0.98] transition-transform">
+              Find a Traveler
+              <ArrowRight size={14} />
+            </button>
+            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-white text-[#0A1628] font-bold text-[13px] rounded-2xl border border-gray-200 shadow-sm active:scale-[0.98] transition-transform">
+              <Plane size={14} className="-rotate-45 text-[#0D9488]" />
+              Post Your Trip
+            </button>
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-4 gap-2 mb-6 w-full max-w-[340px] border-t border-gray-100 pt-6">
+            {[
+              { value: '50K+', label: 'Users' },
+              { value: '120+', label: 'Countries' },
+              { value: '250K+', label: 'Shipped' },
+              { value: '99%', label: 'Success' },
+            ].map((s) => (
+              <div key={s.label} className="flex flex-col items-center">
+                <span className="text-[15px] font-black text-[#0A1628]">{s.value}</span>
+                <span className="text-[9px] text-[#6B7280] font-bold uppercase mt-0.5">{s.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Clean Image Anchor */}
+          <div className="w-full flex justify-center items-end mt-auto pt-4 relative overflow-visible">
             <img
               src={heroWomanCutout}
               alt="Woman traveler"
-              className="w-full max-w-[550px] h-auto object-contain object-bottom pointer-events-none"
+              className="w-[85%] max-w-[320px] h-auto object-contain object-bottom pointer-events-none relative z-10"
             />
+            {/* Soft glow behind image for premium look */}
+            <div className="absolute bottom-0 w-[80%] h-[60%] bg-[#CCFBF1] blur-[50px] rounded-full z-0 opacity-50 pointer-events-none" />
           </div>
         </div>
       </div>
