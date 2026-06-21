@@ -5,6 +5,10 @@ import {
 } from 'lucide-react';
 import airportBackground from '../assets/airport-background.png';
 import heroWomanCutout from '../assets/hero-woman-cutout.png';
+import heroMobileImage from '../assets/ChatGPT Image Jun 20, 2026, 12_36_23 PM.png';
+import heroMobileImageV2 from '../assets/ChatGPT Image Jun 21, 2026, 08_33_19 PM.png';
+import { Send } from 'lucide-react';
+import AdvancedHeroBgAnimation from './AdvancedHeroBgAnimation';
 
 const Hero: React.FC = () => {
   const [activeTab] = useState<'find' | 'post'>('find');
@@ -29,13 +33,16 @@ const Hero: React.FC = () => {
           LAYER 1 — Background: Airport (full bleed)
       ══════════════════════════════════════════════════════════════════ */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Background */}
         <img
           src={airportBackground}
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover opacity-90"
+          className="hidden lg:block w-full h-full object-cover opacity-90"
           style={{ objectPosition: 'center center' }}
         />
+        {/* Mobile Background (Cropped/Shifted for better view) */}
+        {/* Removed for mobile view as requested */}
       </div>
 
 
@@ -99,13 +106,11 @@ const Hero: React.FC = () => {
       </div>
 
       {/* ══════════════════════════════════════════════════════════════════
-          LAYER 5 — Content
+          LAYER 5 — Desktop Content
       ══════════════════════════════════════════════════════════════════ */}
-      <div className="relative z-30 container-flyora pt-28 pb-0 lg:pt-36 lg:pb-16 flex flex-col lg:justify-center min-h-[100dvh]">
-        {/* ── DESKTOP VIEW (UNTOUCHED) ────────────────────────── */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-8 xl:gap-14 items-center">
-          {/* ── LEFT: Text + Badges + CTAs + Stats ─────────────────────── */}
-          <div className="max-w-lg w-full z-30 pb-8 lg:pb-0">
+      <div className="hidden lg:flex relative z-30 container-flyora pt-36 pb-16 flex-col justify-center min-h-[100dvh]">
+        <div className="grid grid-cols-2 gap-14 items-center">
+          <div className="max-w-lg w-full z-30">
             {/* Top Badge */}
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-flyora-teal/25 rounded-full pl-3 pr-4 py-2 mb-6 shadow-sm">
               <Plane size={13} className="text-flyora-teal -rotate-45" />
@@ -117,7 +122,7 @@ const Hero: React.FC = () => {
             {/* H1 */}
             <h1
               className="font-black text-flyora-navy leading-[1.07] tracking-tight mb-5 text-[clamp(3rem,4.5vw,4.5rem)]"
-              id="hero-headline"
+              id="hero-headline-desktop"
             >
               Your Journey
               <br />
@@ -141,17 +146,17 @@ const Hero: React.FC = () => {
               packages safely, affordably and reliably.
             </p>
 
-            {/* ── CTA Buttons ──────────────────────────────────────────── */}
+            {/* ── CTA Buttons (Desktop) ──────────────────────────────────────────── */}
             <div className="flex flex-row flex-wrap gap-3 mb-10 w-auto">
               <button
-                id="hero-find-traveler-btn"
+                id="hero-find-traveler-btn-desktop"
                 className="inline-flex items-center justify-start gap-2.5 px-6 py-3.5 bg-flyora-navy text-white font-bold text-sm rounded-xl shadow-[0_6px_20px_rgba(10,22,40,0.30)] hover:bg-flyora-navy-light hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(10,22,40,0.38)] transition-all duration-300 w-auto"
               >
                 Find a Traveler
                 <ArrowRight size={16} />
               </button>
               <button
-                id="hero-post-trip-btn"
+                id="hero-post-trip-btn-desktop"
                 className="inline-flex items-center justify-start gap-2.5 px-6 py-3.5 bg-white/85 backdrop-blur-sm text-flyora-navy font-bold text-sm rounded-xl border-2 border-flyora-gray-200 shadow-sm hover:border-flyora-teal/50 hover:text-flyora-teal hover:-translate-y-0.5 transition-all duration-300 w-auto"
               >
                 <Plane size={16} className="-rotate-45" />
@@ -161,7 +166,7 @@ const Hero: React.FC = () => {
             </div>
 
             {/* ── Stats Row ────────────────────────────────────────────── */}
-            <div className="flex flex-wrap items-center gap-6">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-6">
               {[
                 { icon: <Users size={16} />, value: '50K+', label: 'Happy Users' },
                 { icon: <Globe size={16} />, value: '120+', label: 'Countries' },
@@ -178,72 +183,80 @@ const Hero: React.FC = () => {
               ))}
             </div>
           </div>
-
-          {/* ── RIGHT: Desktop Spacer ────────────────────────── */}
           <div className="pointer-events-none" />
         </div>
+      </div>
 
-        {/* ── ADVANCED MOBILE VIEW (ONLY MOBILE) ────────────────────────── */}
-        <div className="flex lg:hidden flex-col items-center text-center w-full flex-1 z-30 px-1 pt-2">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-1.5 bg-[#F0FDFA] border border-[#CCFBF1] rounded-full px-3 py-1.5 mb-5 shadow-sm">
-            <Plane size={12} className="text-[#0D9488] -rotate-45" />
-            <span className="text-[10px] font-bold text-[#0F766E] uppercase tracking-wide">
+      {/* ══════════════════════════════════════════════════════════════════
+          LAYER 6 — Mobile Content (Advanced & Responsive)
+      ══════════════════════════════════════════════════════════════════ */}
+      <div className="lg:hidden relative z-30 w-full pt-[120px] flex flex-col bg-gradient-to-b from-white via-flyora-gray-50/50 to-flyora-teal/10 overflow-hidden">
+
+        {/* Advanced Background Abstract Elements */}
+        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-flyora-teal/10 blur-[60px] pointer-events-none" />
+        <div className="absolute bottom-1/4 left-0 -ml-16 w-56 h-56 rounded-full bg-flyora-blue/5 blur-[50px] pointer-events-none" />
+
+        <div className="container-flyora relative z-20 flex flex-col items-center text-center">
+          {/* Top Badge */}
+          <div className="inline-flex items-center gap-2.5 bg-white/80 backdrop-blur-xl border border-flyora-gray-200/60 rounded-full p-1.5 pr-4 mb-6 shadow-[0_4px_15px_rgba(0,0,0,0.03)] w-max">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-flyora-teal to-flyora-teal-light flex items-center justify-center shadow-inner">
+              <Plane size={13} className="text-white -rotate-45" />
+            </div>
+            <span className="text-[11px] font-black text-flyora-navy tracking-widest uppercase">
               Smart Global Shipping
             </span>
           </div>
 
-          {/* Headline */}
-          <h1 className="font-black text-[#0A1628] leading-[1.12] tracking-tight mb-3 text-[2.5rem] sm:text-5xl">
-            Your Journey<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D9488] to-[#14B8A6]">
+          {/* H1 */}
+          <h1
+            className="font-black text-flyora-navy leading-[1.1] tracking-tight mb-4 text-[2.75rem] w-full"
+            id="hero-headline-mobile"
+          >
+            Your Journey
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-flyora-teal via-flyora-teal-light to-flyora-blue">
               Carries More
-            </span><br />
+            </span>
+            <br />
             Than You.
           </h1>
 
           {/* Description */}
-          <p className="text-[13px] text-[#4B5563] leading-relaxed mb-7 max-w-[290px] font-medium">
-            Share luggage space with verified travelers. Ship packages safely and affordably.
+          <p className="text-[15px] text-flyora-gray-600 leading-relaxed mb-8 max-w-[300px] font-medium">
+            Share luggage space with verified travelers. Ship packages safely, affordably, and seamlessly.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col w-full max-w-[280px] gap-3 mb-8">
-            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#0A1628] text-white font-bold text-[13px] rounded-2xl shadow-[0_8px_20px_rgba(10,22,40,0.2)] active:scale-[0.98] transition-transform">
+          {/* CTAs */}
+          <div className="flex flex-col gap-3.5 mb-8 w-full max-w-[340px] relative z-30">
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="flex items-center justify-center gap-3 w-full py-4 bg-flyora-navy text-white font-black text-[15px] rounded-2xl shadow-[0_8px_25px_rgba(10,22,40,0.25)] hover:bg-flyora-navy-light transition-all active:scale-95"
+            >
               Find a Traveler
-              <ArrowRight size={14} />
+              <ArrowRight size={18} />
             </button>
-            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-white text-[#0A1628] font-bold text-[13px] rounded-2xl border border-gray-200 shadow-sm active:scale-[0.98] transition-transform">
-              <Plane size={14} className="-rotate-45 text-[#0D9488]" />
+            <button
+              className="flex items-center justify-center gap-3 w-full py-4 bg-white/80 backdrop-blur-xl text-flyora-navy font-black text-[15px] rounded-2xl border border-flyora-gray-200/80 shadow-[0_4px_15px_rgba(0,0,0,0.04)] hover:bg-white transition-all active:scale-95"
+            >
+              <Send size={18} className="text-flyora-teal -rotate-45 -ml-1 mt-0.5" />
               Post Your Trip
             </button>
           </div>
+        </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-4 gap-2 mb-6 w-full max-w-[340px] border-t border-gray-100 pt-6">
-            {[
-              { value: '50K+', label: 'Users' },
-              { value: '120+', label: 'Countries' },
-              { value: '250K+', label: 'Shipped' },
-              { value: '99%', label: 'Success' },
-            ].map((s) => (
-              <div key={s.label} className="flex flex-col items-center">
-                <span className="text-[15px] font-black text-[#0A1628]">{s.value}</span>
-                <span className="text-[9px] text-[#6B7280] font-bold uppercase mt-0.5">{s.label}</span>
-              </div>
-            ))}
+        {/* Mobile Hero Image - Powerful new Google/Microsoft style image */}
+        <div className="relative w-full flex justify-end mt-6 z-10 overflow-hidden">
+          {/* Advanced Animation Background for Mobile */}
+          <div className="absolute inset-0 z-0">
+            <AdvancedHeroBgAnimation />
           </div>
-
-          {/* Clean Image Anchor */}
-          <div className="w-full flex justify-center items-end mt-auto pt-4 relative overflow-visible">
-            <img
-              src={heroWomanCutout}
-              alt="Woman traveler"
-              className="w-[85%] max-w-[320px] h-auto object-contain object-bottom pointer-events-none relative z-10"
-            />
-            {/* Soft glow behind image for premium look */}
-            <div className="absolute bottom-0 w-[80%] h-[60%] bg-[#CCFBF1] blur-[50px] rounded-full z-0 opacity-50 pointer-events-none" />
-          </div>
+          {/* Stunning glowing backdrop for the image */}
+          <div className="absolute top-10 -right-10 w-[120%] h-[100%] bg-gradient-to-t from-flyora-teal/30 via-flyora-teal/5 to-transparent z-10 blur-2xl rounded-t-full" />
+          <img 
+            src={heroMobileImageV2} 
+            alt="Flyora Traveler" 
+            className="w-full max-w-[440px] object-contain drop-shadow-[0_25px_45px_rgba(13,148,136,0.35)] z-20 scale-[1.3] origin-top-right -mr-6 pb-12 relative"
+          />
         </div>
       </div>
 
@@ -380,7 +393,7 @@ const Hero: React.FC = () => {
         {!isSearchOpen && (
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="group flex items-center gap-3 bg-white pl-3 pr-5 py-3 rounded-2xl shadow-[0_12px_40px_rgba(10,22,40,0.18)] hover:-translate-y-1 hover:shadow-[0_16px_50px_rgba(10,22,40,0.25)] transition-all duration-300 border border-flyora-gray-100"
+            className="group hidden lg:flex items-center gap-3 bg-white pl-3 pr-5 py-3 rounded-2xl shadow-[0_12px_40px_rgba(10,22,40,0.18)] hover:-translate-y-1 hover:shadow-[0_16px_50px_rgba(10,22,40,0.25)] transition-all duration-300 border border-flyora-gray-100"
             aria-label="Open search form"
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-flyora-teal to-flyora-teal-light flex items-center justify-center shadow-teal">
@@ -394,6 +407,17 @@ const Hero: React.FC = () => {
                 Ship Package
               </span>
             </div>
+          </button>
+        )}
+
+        {/* Mobile FAB */}
+        {!isSearchOpen && (
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            className="lg:hidden w-14 h-14 bg-flyora-teal rounded-2xl flex items-center justify-center shadow-lg border-2 border-white mb-2 mr-2 z-50 hover:bg-flyora-teal-light transition-colors"
+            aria-label="Open search form"
+          >
+            <Plane size={24} className="text-white -rotate-45" />
           </button>
         )}
       </div>

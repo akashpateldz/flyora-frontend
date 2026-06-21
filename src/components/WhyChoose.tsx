@@ -1,7 +1,7 @@
 import React from 'react';
-import { 
-  ShieldCheck, Lock, MapPin, 
-  PackageCheck, Star, Globe, 
+import {
+  ShieldCheck, Lock, MapPin,
+  PackageCheck, Star, Globe,
   CheckCircle2, Plane, Navigation,
   CreditCard, UserCheck, Check
 } from 'lucide-react';
@@ -59,9 +59,9 @@ const WhyChoose: React.FC = () => {
   return (
     <section className="py-12 lg:py-16 bg-white relative overflow-hidden" id="why-choose">
       <div className="container-flyora relative z-10">
-        
+
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
-          
+
           {/* ─── Left Side: Content & Cards ──────────────────────────────── */}
           <div className="w-full lg:w-[55%]">
             <span className="inline-block py-1 px-3 rounded-full bg-flyora-teal/10 border border-flyora-teal/20 text-flyora-teal-dark font-bold text-[10px] uppercase tracking-widest mb-4">
@@ -92,10 +92,10 @@ const WhyChoose: React.FC = () => {
           <div className="w-full lg:w-[45%] relative">
             {/* Abstract Gradient Blobs */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-flyora-teal/20 via-blue-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
-            
+
             {/* The Card */}
             <div className="relative bg-white rounded-[1.5rem] p-6 md:p-8 border border-flyora-gray-200 shadow-[0_20px_50px_rgba(10,22,40,0.06)]">
-              
+
               {/* Header */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-flyora-gray-100">
                 <div className="flex items-center gap-3">
@@ -122,7 +122,7 @@ const WhyChoose: React.FC = () => {
               <div className="relative">
                 {/* Vertical Dotted Line */}
                 <div className="absolute left-[11px] top-3 bottom-3 w-px border-l border-dashed border-flyora-gray-200" />
-                
+
                 <div className="space-y-4">
                   {timelineSteps.map((step, idx) => (
                     <div key={idx} className="flex items-center gap-4 relative z-10">
@@ -136,15 +136,15 @@ const WhyChoose: React.FC = () => {
                   ))}
                 </div>
               </div>
-              
+
               {/* Decoration: Airplane moving on a dotted line below */}
               <div className="mt-8 pt-5 border-t border-flyora-gray-100 flex items-center justify-between relative overflow-hidden group">
-                 <div className="w-full absolute top-1/2 left-0 border-t border-dashed border-flyora-gray-200" />
-                 <MapPin size={16} className="text-flyora-gray-400 bg-white relative z-10" />
-                 <div className="relative z-10 w-8 h-8 rounded-full bg-flyora-teal/10 flex items-center justify-center translate-x-2 transition-transform duration-1000 group-hover:translate-x-24">
-                   <Plane size={14} className="text-flyora-teal" />
-                 </div>
-                 <MapPin size={16} className="text-flyora-teal bg-white relative z-10" />
+                <div className="w-full absolute top-1/2 left-0 border-t border-dashed border-flyora-gray-200" />
+                <MapPin size={16} className="text-flyora-gray-400 bg-white relative z-10" />
+                <div className="relative z-10 w-8 h-8 rounded-full bg-flyora-teal/10 flex items-center justify-center translate-x-2 transition-transform duration-1000 group-hover:translate-x-24">
+                  <Plane size={14} className="text-flyora-teal" />
+                </div>
+                <MapPin size={16} className="text-flyora-teal bg-white relative z-10" />
               </div>
 
             </div>

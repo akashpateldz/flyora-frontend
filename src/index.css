@@ -366,8 +366,13 @@ select:focus {
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .pause-on-hover:hover .animate-marquee {
