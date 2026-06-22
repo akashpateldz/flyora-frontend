@@ -86,17 +86,19 @@ const Header: React.FC = () => {
               <span>EN</span>
               <ChevronDown size={13} />
             </button>
-            <button className="text-sm font-semibold text-flyora-navy hover:text-flyora-teal transition-colors px-4 py-2 rounded-xl hover:bg-flyora-gray-50">
+            <Link to="/login" className="text-sm font-semibold text-flyora-navy hover:text-flyora-teal transition-colors px-4 py-2 rounded-xl hover:bg-flyora-gray-50">
               Log In
-            </button>
-            <Button
-              variant="teal"
-              size="md"
-              id="header-cta-btn"
-              iconRight={<Plane size={14} className="-rotate-45" />}
-            >
-              Get Started
-            </Button>
+            </Link>
+            <Link to="/signup">
+              <Button
+                variant="teal"
+                size="md"
+                id="header-cta-btn"
+                iconRight={<Plane size={14} className="-rotate-45" />}
+              >
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* ─── Mobile Menu Button ──────────────────────────────────────────── */}
@@ -145,12 +147,14 @@ const Header: React.FC = () => {
             );
           })}
           <div className="flex flex-col gap-2 pt-3 pb-2 border-t border-flyora-gray-100 mt-2">
-            <button className="text-sm font-semibold text-flyora-navy py-2 text-left px-4 hover:text-flyora-teal transition-colors">
+            <Link to="/login" onClick={() => setIsMenuOpen(false)} className="text-sm font-semibold text-flyora-navy py-2 text-left px-4 hover:text-flyora-teal transition-colors">
               Log In
-            </button>
-            <Button variant="teal" size="lg" fullWidth id="mobile-cta-btn">
-              Get Started →
-            </Button>
+            </Link>
+            <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+              <Button variant="teal" size="lg" fullWidth id="mobile-cta-btn">
+                Get Started →
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
