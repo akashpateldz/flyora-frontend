@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Plane, Mail, Lock, Eye, EyeOff, ArrowRight, Fingerprint, ArrowLeft } from 'lucide-react';
 import Button from '../components/ui/Button';
 
+import { API_BASE_URL } from '../config';
+
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +19,7 @@ const LoginPage: React.FC = () => {
     setErrorMsg('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -36,7 +38,11 @@ const LoginPage: React.FC = () => {
       // Redirect to dashboard
       navigate('/dashboard');
     } catch (err: any) {
-      setErrorMsg(err.message || 'Connection to backend failed');
+      if (err.message === 'Failed to fetch') {
+        setErrorMsg('Failed to connect to the backend server. Please verify if the API is running or try again later.');
+      } else {
+        setErrorMsg(err.message || 'Connection to backend failed');
+      }
     } finally {
       setIsLoading(false);
     }

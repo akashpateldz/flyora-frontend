@@ -6,6 +6,7 @@ import {
   ShieldAlert, Loader2, RefreshCw 
 } from 'lucide-react';
 import Button from '../components/ui/Button';
+import { API_BASE_URL } from '../config';
 
 const KycPage: React.FC = () => {
   const userId = localStorage.getItem('flyora_user_id');
@@ -44,7 +45,7 @@ const KycPage: React.FC = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/kyc/status/${userId}`);
+      const response = await fetch(`${API_BASE_URL}/api/kyc/status/${userId}`);
       if (response.ok) {
         const data = await response.json();
         const status = data.data.status;
@@ -174,7 +175,7 @@ const KycPage: React.FC = () => {
 
     try {
       setSubmitProgress(45);
-      const response = await fetch('http://localhost:5000/api/kyc/submit', {
+      const response = await fetch(`${API_BASE_URL}/api/kyc/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -198,9 +199,12 @@ const KycPage: React.FC = () => {
         setViewMode('STATUS');
         setIsSubmitting(false);
       }, 500);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert('Failed to submit verification. Please try again.');
+      const msg = error.message === 'Failed to fetch'
+        ? 'Failed to connect to the backend server. Please verify if the API is running or try again later.'
+        : error.message || 'Failed to submit verification. Please try again.';
+      alert(msg);
       setIsSubmitting(false);
     }
   };

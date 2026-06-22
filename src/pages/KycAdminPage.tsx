@@ -6,6 +6,7 @@ import {
   Ban, FileText 
 } from 'lucide-react';
 import Button from '../components/ui/Button';
+import { API_BASE_URL } from '../config';
 
 interface KycSubmission {
   userId: string;
@@ -40,7 +41,7 @@ const KycAdminPage: React.FC = () => {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/kyc/admin/list');
+      const response = await fetch(`${API_BASE_URL}/api/kyc/admin/list`);
       if (!response.ok) {
         throw new Error('Failed to fetch KYC list');
       }
@@ -64,7 +65,11 @@ const KycAdminPage: React.FC = () => {
         setSelectedKyc(null);
       }
     } catch (err: any) {
-      setError(err.message || 'Could not fetch list. Verify backend is running.');
+      if (err.message === 'Failed to fetch') {
+        setError('Failed to connect to the backend server. Please verify if the API is running or try again later.');
+      } else {
+        setError(err.message || 'Could not fetch list. Verify backend is running.');
+      }
     } finally {
       setLoading(false);
     }
@@ -80,7 +85,7 @@ const KycAdminPage: React.FC = () => {
     setIsActionLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/kyc/admin/action', {
+      const response = await fetch(`${API_BASE_URL}/api/kyc/admin/action`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -99,7 +104,11 @@ const KycAdminPage: React.FC = () => {
       setRejectionReason('');
       await fetchSubmissions();
     } catch (err: any) {
-      alert(err.message || 'Something went wrong');
+      if (err.message === 'Failed to fetch') {
+        alert('Failed to connect to the backend server. Please verify if the API is running or try again later.');
+      } else {
+        alert(err.message || 'Something went wrong');
+      }
     } finally {
       setIsActionLoading(false);
     }

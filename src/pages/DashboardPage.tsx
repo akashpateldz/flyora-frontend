@@ -6,6 +6,7 @@ import {
   Sparkles, DollarSign, Lock, CreditCard, RefreshCw, Check
 } from 'lucide-react';
 import Button from '../components/ui/Button';
+import { API_BASE_URL } from '../config';
 
 interface Trip {
   id: string;
@@ -124,21 +125,21 @@ const DashboardPage: React.FC = () => {
     setLoading(true);
     try {
       // Fetch overview stats & matches
-      const overviewRes = await fetch(`http://localhost:5000/api/dashboard/overview/${userId}`);
+      const overviewRes = await fetch(`${API_BASE_URL}/api/dashboard/overview/${userId}`);
       if (overviewRes.ok) {
         const oData = await oDataJSON(overviewRes);
         setOverview(oData.data);
       }
 
       // Fetch user trips
-      const tripsRes = await fetch(`http://localhost:5000/api/dashboard/trips/${userId}`);
+      const tripsRes = await fetch(`${API_BASE_URL}/api/dashboard/trips/${userId}`);
       if (tripsRes.ok) {
         const tData = await tripsRes.json();
         setTrips(tData.data);
       }
 
       // Fetch user shipments
-      const shipmentsRes = await fetch(`http://localhost:5000/api/dashboard/shipments/${userId}`);
+      const shipmentsRes = await fetch(`${API_BASE_URL}/api/dashboard/shipments/${userId}`);
       if (shipmentsRes.ok) {
         const sData = await shipmentsRes.json();
         setShipments(sData.data);
@@ -162,7 +163,7 @@ const DashboardPage: React.FC = () => {
       fetchData();
       
       // Load user details for profile
-      fetch(`http://localhost:5000/api/kyc/status/${userId}`)
+      fetch(`${API_BASE_URL}/api/kyc/status/${userId}`)
         .then(res => res.json())
         .then(data => {
           if (data.success && data.data) {
@@ -188,7 +189,7 @@ const DashboardPage: React.FC = () => {
     setModalLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/dashboard/trips', {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/trips`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -218,9 +219,12 @@ const DashboardPage: React.FC = () => {
         const err = await response.json();
         alert(err.message || 'Failed to create trip');
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      alert('Network error creating trip');
+      const msg = err.message === 'Failed to fetch'
+        ? 'Failed to connect to the backend server. Please verify if the API is running or try again later.'
+        : 'Network error creating trip';
+      alert(msg);
     } finally {
       setModalLoading(false);
     }
@@ -233,7 +237,7 @@ const DashboardPage: React.FC = () => {
     setModalLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/dashboard/shipments', {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/shipments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -266,9 +270,12 @@ const DashboardPage: React.FC = () => {
         const err = await response.json();
         alert(err.message || 'Failed to create shipment');
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      alert('Network error creating shipment');
+      const msg = err.message === 'Failed to fetch'
+        ? 'Failed to connect to the backend server. Please verify if the API is running or try again later.'
+        : 'Network error creating shipment';
+      alert(msg);
     } finally {
       setModalLoading(false);
     }
@@ -282,7 +289,7 @@ const DashboardPage: React.FC = () => {
     setProfileMessage({ text: '', type: '' });
 
     try {
-      const response = await fetch(`http://localhost:5000/api/dashboard/profile/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/profile/${userId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -302,8 +309,11 @@ const DashboardPage: React.FC = () => {
       } else {
         setProfileMessage({ text: resData.message || 'Update failed', type: 'error' });
       }
-    } catch (err) {
-      setProfileMessage({ text: 'Connection failed', type: 'error' });
+    } catch (err: any) {
+      const msg = err.message === 'Failed to fetch'
+        ? 'Failed to connect to the backend. Please verify if the API is running.'
+        : 'Connection failed';
+      setProfileMessage({ text: msg, type: 'error' });
     } finally {
       setProfileLoading(false);
     }
