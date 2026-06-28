@@ -252,9 +252,9 @@ const Hero: React.FC = () => {
           </div>
           {/* Stunning glowing backdrop for the image */}
           <div className="absolute top-10 -right-10 w-[120%] h-[100%] bg-gradient-to-t from-flyora-teal/30 via-flyora-teal/5 to-transparent z-10 blur-2xl rounded-t-full" />
-          <img 
-            src={heroMobileImageV2} 
-            alt="Flyora Traveler" 
+          <img
+            src={heroMobileImageV2}
+            alt="Flyora Traveler"
             className="w-full max-w-[440px] object-contain drop-shadow-[0_25px_45px_rgba(13,148,136,0.35)] z-20 scale-[1.3] origin-top-right -mr-6 pb-12 relative"
           />
         </div>

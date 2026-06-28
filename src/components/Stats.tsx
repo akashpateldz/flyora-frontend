@@ -69,8 +69,8 @@ const Stats: React.FC = () => {
                 rounded-3xl border border-flyora-gray-100 bg-white shadow-[0_5px_20px_rgba(10,22,40,0.02)]
                 hover:-translate-y-1 transition-all duration-300 group overflow-hidden
                 ${index === STATS.length - 1 ? 'col-span-2 lg:col-span-1' : ''}
-                ${stat.color === 'teal' 
-                  ? 'hover:border-flyora-teal/30 hover:shadow-[0_15px_30px_rgba(20,184,166,0.12)]' 
+                ${stat.color === 'teal'
+                  ? 'hover:border-flyora-teal/30 hover:shadow-[0_15px_30px_rgba(20,184,166,0.12)]'
                   : 'hover:border-blue-500/30 hover:shadow-[0_15px_30px_rgba(59,130,246,0.12)]'}
                 ${isVisible ? 'animate-slide-up' : 'opacity-0'}
               `}
@@ -78,7 +78,7 @@ const Stats: React.FC = () => {
             >
               {/* Background Glow on Hover */}
               <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-b ${stat.color === 'teal' ? 'from-flyora-teal to-transparent' : 'from-blue-500 to-transparent'}`} />
-              
+
               {/* Icon */}
               <div className={`
                 w-10 h-10 lg:w-12 lg:h-12 rounded-2xl flex items-center justify-center mb-4 relative z-10
@@ -105,7 +105,7 @@ const Stats: React.FC = () => {
         {/* Star Rating Row */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 mt-8">
           <div className="flex items-center gap-0.5">
-            {[1,2,3,4,5].map((s) => (
+            {[1, 2, 3, 4, 5].map((s) => (
               <Star key={s} size={20} className="text-amber-400 fill-amber-400" />
             ))}
           </div>

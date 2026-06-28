@@ -43,7 +43,7 @@ const Header: React.FC = () => {
             </div>
             <div className="flex flex-col leading-none">
               <span className={`text-xl font-black tracking-tight transition-colors duration-300 ${isScrolled ? 'text-flyora-navy' : 'text-flyora-navy'}`}>
-                fly<span className="text-flyora-teal">ora</span>
+                fly<span className="text-flyora-teal">orago</span>
               </span>
               <span className="text-[9px] font-medium text-flyora-gray-500 tracking-widest uppercase">
                 Ship Smarter

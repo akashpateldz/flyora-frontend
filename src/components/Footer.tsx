@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         {/* Main Footer Content */}
         <div className="pt-10 pb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 xl:gap-8">
-            
+
             {/* ─── Brand Column ──────────────────────────────────────────────── */}
             <div className="lg:col-span-2">
               <a href="/" className="inline-flex items-center gap-2 group mb-4 block" id="footer-logo">

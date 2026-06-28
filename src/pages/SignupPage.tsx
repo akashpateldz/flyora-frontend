@@ -108,7 +108,7 @@ const SignupPage: React.FC = () => {
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-2xl font-black tracking-tight text-white transition-colors duration-300">
-                fly<span className="text-flyora-teal">ora</span>
+                fly<span className="text-flyora-teal">orago</span>
               </span>
             </div>
           </Link>
@@ -158,7 +158,7 @@ const SignupPage: React.FC = () => {
               </div>
               <div className="flex flex-col leading-none text-left">
                 <span className="text-2xl font-black tracking-tight text-flyora-navy">
-                  fly<span className="text-flyora-teal">ora</span>
+                  fly<span className="text-flyora-teal">orago</span>
                 </span>
               </div>
             </Link>
@@ -370,7 +370,7 @@ const SignupPage: React.FC = () => {
                 <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-flyora-blue rounded-full border border-flyora-navy" />
               </div>
               <span className="text-lg font-black tracking-tight text-flyora-navy">
-                fly<span className="text-flyora-teal">ora</span>
+                fly<span className="text-flyora-teal">orago</span>
               </span>
             </Link>
           </div>
