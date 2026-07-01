@@ -1,6 +1,6 @@
 import React from 'react';
 
-type BadgeVariant = 'teal' | 'navy' | 'blue' | 'success' | 'warning' | 'outline';
+type BadgeVariant = 'teal' | 'navy' | 'blue' | 'success' | 'warning' | 'outline' | 'danger';
 type BadgeSize = 'sm' | 'md' | 'lg';
 
 interface BadgeProps {
@@ -19,6 +19,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   success: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
   warning: 'bg-amber-50 text-amber-700 border border-amber-200',
   outline: 'bg-transparent text-flyora-navy border border-flyora-gray-200',
+  danger: 'bg-red-50 text-red-700 border border-red-200',
 };
 
 const sizeClasses: Record<BadgeSize, string> = {

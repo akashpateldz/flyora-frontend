@@ -34,9 +34,15 @@ const LoginPage: React.FC = () => {
       // Store user details in localStorage
       localStorage.setItem('flyora_user_id', resData.data.userId);
       localStorage.setItem('flyora_user_name', resData.data.fullName);
+      localStorage.setItem('flyora_user_email', resData.data.email);
+      localStorage.setItem('flyora_user_role', resData.data.role || 'user');
 
-      // Redirect to dashboard
-      navigate('/dashboard');
+      // Redirect to dashboard or admin panel based on role
+      if (resData.data.role === 'admin' || resData.data.email === 'admin@flyorago.com') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err: any) {
       if (err.message === 'Failed to fetch') {
         setErrorMsg('Failed to connect to the backend server. Please verify if the API is running or try again later.');
