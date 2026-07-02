@@ -11,6 +11,7 @@ import KycPage from './pages/KycPage';
 import KycAdminPage from './pages/KycAdminPage';
 import DashboardPage from './pages/DashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
+import AdminLoginPage from './pages/AdminLoginPage';
 
 const App: React.FC = () => {
   return (
@@ -25,7 +26,9 @@ const App: React.FC = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/kyc" element={<KycPage />} />
         <Route path="/admin/kyc" element={<Navigate to="/admin/dashboard" replace />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+        <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
         <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </Router>

@@ -157,17 +157,25 @@ const AdminDashboardPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [recentActivities, setRecentActivities] = useState<ActivityItem[]>([]);
 
+  // Settings States
+  const [newUsername, setNewUsername] = useState<string>('admin');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [settingsMsg, setSettingsMsg] = useState<string>('');
+  const [settingsError, setSettingsError] = useState<string>('');
+  const [settingsLoading, setSettingsLoading] = useState<boolean>(false);
+
   // Authenticate Admin
   useEffect(() => {
-    const role = localStorage.getItem('flyora_user_role');
-    const email = localStorage.getItem('flyora_user_email');
-    const name = localStorage.getItem('flyora_user_name');
-    if (name) setAdminName(name);
-
-    if (role !== 'admin' && email !== 'admin@flyorago.com') {
-      console.log('Admin access authenticated.');
+    const adminToken = localStorage.getItem('flyora_admin_token');
+    const adminUser = localStorage.getItem('flyora_admin_username');
+    if (!adminToken) {
+      navigate('/admin/login');
+      return;
     }
-  }, []);
+    if (adminUser) {
+      setAdminName(adminUser);
+    }
+  }, [navigate]);
 
   // Fetch Stats and Lists
   const fetchAllData = async () => {
@@ -334,11 +342,43 @@ const AdminDashboardPage: React.FC = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('flyora_admin_token');
+    localStorage.removeItem('flyora_admin_username');
     localStorage.removeItem('flyora_user_id');
     localStorage.removeItem('flyora_user_name');
     localStorage.removeItem('flyora_user_email');
     localStorage.removeItem('flyora_user_role');
-    navigate('/login');
+    navigate('/admin/login');
+  };
+
+  const handleUpdateAdminCredentials = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSettingsLoading(true);
+    setSettingsMsg('');
+    setSettingsError('');
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/admin/update-credentials`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newUsername, newPassword }),
+      });
+
+      const resData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(resData.message || 'Failed to update credentials');
+      }
+
+      setSettingsMsg('Admin credentials updated successfully!');
+      localStorage.setItem('flyora_admin_username', newUsername);
+      setAdminName(newUsername);
+      setNewPassword('');
+    } catch (err: any) {
+      setSettingsError(err.message || 'Something went wrong while updating credentials.');
+    } finally {
+      setSettingsLoading(false);
+    }
   };
 
   // Filters based on query
@@ -376,7 +416,8 @@ const AdminDashboardPage: React.FC = () => {
     { id: 'shipments', label: 'Shipment Listings (Parcels)', icon: Box },
     { id: 'bookings', label: 'Booking Matches', icon: Calendar },
     { id: 'reviews', label: 'User Reviews', icon: Star },
-    { id: 'waitlist', label: 'Waitlist Signups', icon: ListFilter }
+    { id: 'waitlist', label: 'Waitlist Signups', icon: ListFilter },
+    { id: 'settings', label: 'System Settings', icon: Settings }
   ];
 
   const sidebarContent = (
@@ -1420,6 +1461,76 @@ const AdminDashboardPage: React.FC = () => {
                         </tbody>
                       </table>
                     </div>
+                  </Card>
+                </div>
+              )}
+
+              {/* ────────────────────────────────────────────────────────────────────────
+                  TAB I: SYSTEM SETTINGS
+                  ──────────────────────────────────────────────────────────────────────── */}
+              {activeTab === 'settings' && (
+                <div className="space-y-6 max-w-xl animate-slide-up">
+                  <div>
+                    <h1 className="text-xl sm:text-2xl font-black text-slate-800">System Settings</h1>
+                    <div className="text-[9px] text-slate-400 font-bold mt-1 uppercase flex items-center gap-1.5">
+                      <span>Admin</span> <span className="text-slate-300">/</span> <span className="text-slate-600">Settings</span>
+                    </div>
+                  </div>
+
+                  <Card className="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm space-y-6">
+                    <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
+                      <div className="w-10 h-10 rounded-xl bg-teal-50 text-flyora-teal flex items-center justify-center border border-teal-100">
+                        <Settings size={18} className="animate-spin-slow" />
+                      </div>
+                      <div>
+                        <h2 className="text-sm font-black text-slate-900">Security Credentials</h2>
+                        <p className="text-[10px] text-slate-400 font-bold mt-0.5">Manage administrative log-in attributes</p>
+                      </div>
+                    </div>
+
+                    {settingsMsg && (
+                      <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-xs font-bold p-3.5 rounded-2xl flex items-center gap-2 animate-fade-in">
+                        <Check size={16} className="shrink-0" />
+                        <span>{settingsMsg}</span>
+                      </div>
+                    )}
+
+                    {settingsError && (
+                      <div className="bg-rose-500/10 border border-rose-500/20 text-rose-600 text-xs font-bold p-3.5 rounded-2xl flex items-center gap-2 animate-shake">
+                        <ShieldAlert size={16} className="shrink-0" />
+                        <span>{settingsError}</span>
+                      </div>
+                    )}
+
+                    <form className="space-y-5" onSubmit={handleUpdateAdminCredentials}>
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block">New Admin Username</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. admin"
+                          value={newUsername}
+                          onChange={(e) => setNewUsername(e.target.value)}
+                          className="w-full px-4 py-3 border border-slate-200 rounded-xl text-xs font-semibold focus:border-flyora-teal text-slate-700 bg-white"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block">New Secret Passkey</label>
+                        <input
+                          type="password"
+                          required
+                          placeholder="••••••••••••"
+                          value={newPassword}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          className="w-full px-4 py-3 border border-slate-200 rounded-xl text-xs font-semibold focus:border-flyora-teal text-slate-700 bg-white"
+                        />
+                      </div>
+
+                      <Button variant="teal" type="submit" disabled={settingsLoading} className="w-full py-3.5 shadow-teal font-black text-xs">
+                        {settingsLoading ? 'Saving credentials...' : 'Update Admin Credentials'}
+                      </Button>
+                    </form>
                   </Card>
                 </div>
               )}
